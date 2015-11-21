@@ -1,1 +1,1 @@
-web: gunicorn bone_explorer:app --log-file=-
+web: python run.py
