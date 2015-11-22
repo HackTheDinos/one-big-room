@@ -13,5 +13,5 @@ def search():
     
     return jsonify({
         'query': query,
-        'results': do_search(query, group)
+        'results': [ specimen.get_result_view_data(s) for s in do_search(query, group) ]
     })

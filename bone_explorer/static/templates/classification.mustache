@@ -1,5 +1,7 @@
 <ol class="breadcrumb">
   {{#classification}}
-    <li>{{.}}</li> 
+    {{#.}}
+        <li>{{.}}</li> 
+    {{/.}}
   {{/classification}} 
-</ol>   
+</ol>

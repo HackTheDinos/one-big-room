@@ -7,7 +7,7 @@ def get_specimen_url(specimen_name):
     return BASE_URL + '/specimens/%s' % specimen_name.replace(" ", "_")
 
 def get_slice_url(specimen_url, slice):
-    return specimen_url + '/applet/slicessm/coronal/cor%04d.jpg' % slice
+    return specimen_url + '/applet/slicessm/coronal/cor%03d.jpg' % slice
 
 def get_slice_urls(specimen_url, total_slices):
     delta = int(math.floor(total_slices / PREVIEW_SLICES))
