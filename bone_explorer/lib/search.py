@@ -51,5 +51,5 @@ def do_search(q, group):
 
 def getScanData(id):
     if (es.ping()):
-        return es.get(index="scans2", doc_type="scans_test", id=id)
+        return es.get(index="scans2", doc_type="scans_test", id=id)["_source"]
     return None
