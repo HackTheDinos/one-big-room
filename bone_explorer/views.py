@@ -1,7 +1,6 @@
 from bone_explorer import app
 import pystache
 import os
-import urllib
 from flask import request
 from lib import specimen, search
 
@@ -60,9 +59,11 @@ IMAGE_GROUPS = [
 @app.route('/')
 def index():
     inital_group = request.args.get('group', None);
+
     data = {
         'pageTitle': 'Search for Specimens',
         'inital_query': request.args.get('query', ''),
+        'hierarchy' : getBrowseData(),
         'groups': [ {
                 'name': group,
                 'selected' : group == inital_group
@@ -85,25 +86,25 @@ def about():
     })
     return mustache_render('results.mustache', data)
 
-@app.route('/browse')
-def browse():
-    pageTitle = 'Explore Species by Groups'
-  
+def getBrowseData():
     imgGroups = []
 
     for index, g in enumerate(GROUPS):
       x = {
           'group' : g,
-          'image' : IMAGE_GROUPS[index],
-          'urlgroup' : urllib.quote(g)
+          'image' : IMAGE_GROUPS[index]
         }
       imgGroups.append(x)
 
+    return imgGroups
 
-
+@app.route('/browse')
+def browse():
+    pageTitle = 'Explore Species by Groups'
+  
     data = {
       'pageTitle' : pageTitle,
-      'hierarchy' : imgGroups
+      'hierarchy' : getBrowseData() 
     }
 
     return mustache_render('browse.mustache', data)

@@ -1,0 +1,30 @@
+<div class="container bs-docs-container">
+
+  <div class="row">
+    <h1>Explore Species Groups</h1>
+    <div class="row">
+
+      {{#hierarchy}}
+        <div class="col-lg-4 top-buffer">
+            <div class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <a href="http://0.0.0.0:5000/api/search?group={{urlgroup}}">
+                  <div class="item active">
+                    <img src="{{image}}" alt="" class="img-responsive"style="width:350px">
+                      <div class="carousel-caption">
+                        <h2><strong>{{group}}</strong></h2>
+                      </div>
+                  </div>
+                </a>
+            </div>
+          </div>
+        </div>
+      {{/hierarchy}}
+
+    </div>
+
+
+  </div>
+</div>
+
+
