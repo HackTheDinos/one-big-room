@@ -1,0 +1,16 @@
+
+{{>includes}}
+{{>header}}
+
+<div class="container bs-docs-container">
+  <h1>{{pagetitle}}</h1>
+
+  {{#resultsList}}
+  <ul class="list-group">
+    <li class="list-group-item">{{.}}</li>
+  </ul>
+  {{/resultsList}}
+
+</div>
+
+{{>footer}}
