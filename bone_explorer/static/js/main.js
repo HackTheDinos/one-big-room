@@ -8,3 +8,20 @@ $('.slice-preview').each(function() {
         this.src = slice_urls[slice];
     })
 });
+
+var result_template = $('#result-template').html();
+Mustache.parse(result_template);
+function render_results(result_list) {
+    $('#results').html(Mustache.render(result_template, {
+        results_list: result_list
+    }));
+}
+
+var title = document.title;
+$("#search").submit(function(e) {
+    e.preventDefault();
+    $.get("/api/search", $(this).serialize()).success(function(response) {
+        render_results(response.results);
+        document.title = response.query + " - " + title;
+    });
+});
