@@ -6,13 +6,18 @@ def get_common_data(result):
   specimen_url = digimorph.get_specimen_url(result['scientific_name'])
   slice_urls = digimorph.get_slice_urls(specimen_url, 476)
   
+  slice_data = None
+  if True or 'slice_count' in result:
+    slice_data = {
+      'has_slices': 'slice_count' in result,
+      'slice_urls': json.dumps(slice_urls),
+      'first_slice': slice_urls[int(math.floor(len(slice_urls)/2))]
+    }
+
   return {
     'digimorph_url': specimen_url,
     'imageUrl': digimorph.get_preview_url(specimen_url),
-    'slice_data': {
-          'slice_urls': json.dumps(slice_urls),
-          'first_slice': slice_urls[int(math.floor(len(slice_urls)/2))]
-    },
+    'slice_data': slice_data,
     'classification': [
         result.get('phylum', None),
         result.get('class', None),

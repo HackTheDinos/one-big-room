@@ -3,10 +3,13 @@ var title = document.title;
 
 function init_slice_previews() {
     $('.slice-preview').each(function() {
-        var $image = $(this),
+        var $preview = $(this),
+            $marker = $preview.find('.slice-marker'),
+            $image = $preview.find('.slice-image'),
             slice_urls = $image.data('slice-urls'),
             slice_count = slice_urls.length - 1;
         $image.mousemove(function(e) {
+            $marker.css('left', Math.min(e.offsetX, this.width - $marker.width()))
             slice = Math.floor(slice_count * (e.offsetX / this.width));
             if (slice_urls[slice]) {
                 this.src = slice_urls[slice]
