@@ -1,6 +1,6 @@
 import math
 
-BASE_URL = 'http://digimorph.org/'
+BASE_URL = 'http://digimorph.org'
 PREVIEW_SLICES = 50
 
 def get_specimen_url(specimen_url):
