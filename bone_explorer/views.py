@@ -27,6 +27,21 @@ GROUPS = [
 ]
 
 
+GROUPS_MAP = {
+  { "Non-vertebrates" : ["Arthropods", "Brachiopoda", "Plants", "Echinoderms", "Mollusks", "Foraminifera"] },
+  { "Sharks, Fishes and Other Fish-like Creatures" : ["Actinopterygians", "Chondrichthyians", "Actinistia", "Sarcopterygians", "Dipnoi"] },
+  { "Amphibians" : ["Anura", "Caudata", "Gymnophiona"]},
+  {"Mammals and Their Extinct Relatives" : ["Placentals", "Monotremes", "Basal Synapsids", "Marsupials", "Basal Mammals"]},
+  {"Turtles" : ["Cryptodires", "Pleurodires"]},
+  {"Lizards, Snakes and Their Relatives": ["Iguanians", "Scleroglossans"]},
+  {"Alligators and Crocodiles" : ["Pseudosuchia"]},
+  {"Birds" : ["Avians"]},
+  {"Dinosaurs, Pterosaurs and Their Extinct Relatives" : ["Pterosaurs", "Non-avian Dinosaurs"]},
+  {"Bats" : []},
+  {"Primates" : []}
+}
+
+
 IMAGE_GROUPS = [
       'http://digimorph.org/images/urchinsm.jpg',
       'http://digimorph.org/images/sharksm.jpg',
