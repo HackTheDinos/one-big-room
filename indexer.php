@@ -50,10 +50,11 @@ foreach($docs as $doc) {
         $group = "";
     }
 
-    $sc = isset($slices[$url]) ? $slices[$url]["slice_count"] : 0;
-    $zp = isset($slices[$url]) ? $slices[$url]["zero_padding"] : 0;
-
     foreach($urls as $url) {
+
+        $sc = isset($slice_data[$url]) ? $slice_data[$url]["slice_count"] : 0;
+        $zp = isset($slice_data[$url]) ? $slice_data[$url]["zero_padding"] : 0;
+
         $doc = [
             "specimen_url" => $url,
             "group" => $group,
@@ -78,7 +79,7 @@ foreach($docs as $doc) {
 
         $blob = json_encode($doc);
         $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
-        $index_cmd = "curl -XPOST \"{$bonsai_url}/scans2/scans_test/\" -d '{$blob}'\n";
+        $index_cmd = "curl -XPOST \"{$bonsai_url}/scans/scans_test/\" -d '{$blob}'\n";
 
         fwrite($out_tmp, $index_cmd);
 
