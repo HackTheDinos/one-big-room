@@ -2,10 +2,10 @@
 
 import json
 import requests
+import argparse
 from bs4 import BeautifulSoup
 
-digimorph = "http://digimorph.org/listbygroup.phtml?grp=dinosaur&sort=CommonName" # test for below
-base = "http://digimorph.org/specimens"
+BASE = "http://digimorph.org/specimens"
 
 def scrape_digimorph_html_tables(digimorph_url):
 	'''gets the list of species from a digimorph
@@ -21,7 +21,7 @@ def scrape_digimorph_html_tables(digimorph_url):
 			if a.get("name"):
 				final.append(a.get("name"))
 			if a.get("href"):
-				final.append(base + a.get("href"))
+				final.append(BASE + a.get("href"))
 			if a.text:
 				final.append(a.text)
 	regrouped = [final[i:i+3] for i in xrange(0, len(final), 3)] # could probably not group twice but ??!?
@@ -30,3 +30,9 @@ def scrape_digimorph_html_tables(digimorph_url):
 	for g in regrouped:
 		actual_final.append(dict(zip(keys, g)))
 	return json.dumps(actual_final)
+
+if __name__ == '__main__':
+	parser = argparse.ArgumentParser()
+	parser.add_argument("durl")
+	args = parser.parse_args()
+	scrape_digimorph_html_tables(args.durl)
