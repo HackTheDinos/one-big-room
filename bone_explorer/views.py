@@ -39,8 +39,10 @@ def specimen():
 @app.route('/search')
 def specimenSearch():
     pageTitle = 'Search for Specimens'
+    data = mallardData
+    data['pageTitle'] = pageTitle
 
-    return mustache_render('search.mustache', { 'message': 'Hello!'})
+    return mustache_render('search.mustache', data)
 
 @app.route('/results')
 def results():
