@@ -2,7 +2,15 @@
     "mappings": {
         "scans_test": {
             "properties": {
+                "specimen_url": {
+                    "type": "string",
+                    "store": true
+                },
                 "scientific_name": {
+                    "type": "string",
+                    "store": true
+                },
+                "vernacular_name": {
                     "type": "string",
                     "store": true
                 },
