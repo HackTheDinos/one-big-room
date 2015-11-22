@@ -3,7 +3,7 @@
 {{>header}}
 
 <div class="container bs-docs-container">
-
+{{{.}}}
   <div class="row">
     <h1>{{scientific_name}} <small>{{vernacular_name}}</small></h1>
     
@@ -17,7 +17,9 @@
     <div class="col-md-6 text-center">
       <h2>Slice Preview</h2>
       {{>slice_preview}}
-      <p>Drag your mouse across the image to animate.</p>
+      {{#slice_data}}
+        <p>Drag your mouse across the image to animate.</p>
+      {{/slice_data}}
     </div>
   </div>
     
@@ -76,8 +78,6 @@
               </div>
             </div>
          </div>
-
-
       </div>
     </div>
 </div>

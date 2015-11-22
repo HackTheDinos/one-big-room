@@ -3,26 +3,28 @@ import json, sys, urllib2, re
 from pprint import pprint
 from bs4 import BeautifulSoup
 
-with open(sys.argv[1]) as data_file:    
-    data = json.load(data_file)
+all_species = {}
+for line in open('url_map.json'):
+    all_species.update(json.loads(line))
+
+urls = []
+for val in all_species.values():
+    urls.extend(val['urls'])
 
 def get_page(url):
     print "getting " + url
     response = urllib2.urlopen(url)
     return response.read()
 
-species = filter(None, [ d.get('species', None) for d in data ])
-species = [species[0]]
-
-species_data = []
+species_data = {}
 
 date_re = re.compile('Publication Date:([^<]*)', re.DOTALL)
 
-for s in species:
+for u in urls:
     data = {}
 
     try:
-        html = get_page(digimorph.get_specimen_url(s))
+        html = get_page(digimorph.get_specimen_url(u))
         soup = BeautifulSoup(html, 'html.parser')
         
         # Author and institution
@@ -58,7 +60,7 @@ for s in species:
                 available_images.append(last_header + " - " + td.find_all('a')[0].get_text().strip())
         data['available_images'] = available_images
 
-        species_data.append(data)
+        species_data[u] = data
     except(urllib2.HTTPError):
         print "Error"
         pass

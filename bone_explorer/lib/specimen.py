@@ -3,11 +3,13 @@ import json
 import math
 
 def get_common_data(result):
-  specimen_url = digimorph.get_specimen_url(result['scientific_name'])
-  slice_urls = digimorph.get_slice_urls(specimen_url, 476)
+  specimen_url = digimorph.get_specimen_url(result['specimen_url'])
   
   slice_data = None
-  if True or 'slice_count' in result:
+  if result.get('slice_count', 0) > 0:
+    slice_urls = digimorph.get_slice_urls(specimen_url,
+                          result.get('slice_count', 100),
+                          result.get('zero_padding', 1))
     slice_data = {
       'has_slices': 'slice_count' in result,
       'slice_urls': json.dumps(slice_urls),

@@ -19,19 +19,25 @@ def find_last(specimen_url, padding, start, step):
     print
     return max_slice - step
 
-with open(sys.argv[1]) as data_file:    
-    data = json.load(data_file)
 
-species = filter(None, [ d.get('species', None) for d in data ])
+all_species = {}
+for line in open('url_map.json'):
+    all_species.update(json.loads(line))
+pprint(all_species)
+
+urls = []
+for val in all_species.values():
+    urls.extend(val['urls'])
+
+pprint(urls)
 slice_data = {}
-
-for s in species:
-    specimen_url = digimorph.get_specimen_url(s)
+for u in urls:
+    specimen_url = digimorph.get_specimen_url(u)
     padding = 0
     max_slice = 0
     has_slices = True
 
-    print "Finding images for %s and base url %s" % (s, specimen_url)
+    print "Finding images for %s" % specimen_url
     print digimorph.get_slice_url(specimen_url, 1, 3)
     # 3 or 4 padding?
     if has_image(digimorph.get_slice_url(specimen_url, 1, 3)):
@@ -50,7 +56,7 @@ for s in species:
         max_slice = find_last(specimen_url, padding, max_slice, 10)
         max_slice = find_last(specimen_url, padding, max_slice, 1)
         
-        slice_data[s] = {
+        slice_data[u] = {
             'zero_padding': padding,
             'slice_count': max_slice,
         }
