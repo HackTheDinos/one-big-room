@@ -63,7 +63,8 @@ $(function() {
     $("#search").submit(function(e) {
         e.preventDefault();
         var $form = $(this);
-        if ($form.find('[name=query]').val() != '') {
+        if ($form.find('[name=query]').val()
+            || $form.find('[name=group]').val()) {
             search($form.serialize())
         }
     }).submit();
