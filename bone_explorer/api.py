@@ -1,6 +1,6 @@
 from bone_explorer import app
 from flask import request, jsonify
-from lib.search import do_search
+from lib.search import do_search, get_scan_data
 
 from lib import specimen
 
@@ -15,3 +15,8 @@ def search():
         'query': query,
         'results': [ specimen.get_result_view_data(s) for s in do_search(query, group) ]
     })
+
+@app.route(API_URL + '/scan')
+def get_scan():
+    id = request.args.get('id', None)
+    return jsonify(get_scan_data(id))
