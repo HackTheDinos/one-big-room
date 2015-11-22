@@ -59,7 +59,7 @@ window.onpopstate = function(e) {
 }
 
 $(function() {
-    result_template = templateLoader('results');
+    result_template = templateLoader('search_results');
     $("#search").submit(function(e) {
         e.preventDefault();
         var $form = $(this);
