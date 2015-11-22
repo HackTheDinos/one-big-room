@@ -9,11 +9,16 @@ API_URL = '/api'
 @app.route(API_URL + '/search')
 def search():
     query = request.args.get('query', None)
+
     group = request.args.get('group', None)
+    if (group):
+        groups = [group]
+    else:
+        groups = []
     
     return jsonify({
         'query': query,
-        'results': [ specimen.get_result_view_data(s) for s in do_search(query, group) ]
+        'results': [ specimen.get_result_view_data(s) for s in do_search(query, groups) ]
     })
 
 @app.route(API_URL + '/scan')

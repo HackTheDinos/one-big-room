@@ -26,15 +26,17 @@ index_name = "scans"
 text_fields = ["species", "phylum", "family", "class", "genus", "scientific_name", "wikipedia_snippet",
         "wikipedia_misc", "gbif_snippet", "gbif_misc"]
 
-def do_search(q, group):
+def do_search(q, groups):
     if (es.ping()):
         query = {}
 
         matches = [{"match": {f: q}} for f in text_fields]
         match_q = {"dis_max": {"queries": matches}}
 
-        if (group):
-            filter = {"term": {"is_skrillex": False}}
+        if (len(groups) > 0):
+            group_matches = [{"term": {"group": group}} for group in groups]
+            filter = {"or": group_matches}
+
             query = {"query": {"filtered": {"filter": filter}}}
             if (q):
                 query["query"]["filtered"]["query"] = match_q
