@@ -21,25 +21,26 @@ es_header = [{
 # Instantiate the new Elasticsearch connection:
 es = Elasticsearch(es_header)
 
-# Verify that Python can talk to Bonsai (optional):
-es.ping()
+text_fields = ["species", "phylum", "family", "class", "genus", "scientific_name", "wikipedia_snippet",
+        "wikipedia_misc", "gbif_snippet", "gbif_misc"]
 
 def do_search(q, group):
     if (es.ping()):
         query = {}
 
-        match_q = {"match": {"name": q}}
+        matches = [{"match": {f: q}} for f in text_fields]
+        match_q = {"dis_max": {"queries": matches}}
+
         if (group):
             filter = {"term": {"is_skrillex": True}}
             query = {"query": {"filtered": {"filter": filter, "query": match_q}}}
         else:
             query = {"query": match_q}
-        query["fields"] = {"fields":["name"]}
 
-        res = es.search(index="test", doc_type="people", body=query)
+        res = es.search(index="scans", doc_type="scans_test", body=query)
+        hits = res["hits"]["hits"] # why
         
-        hits = res["hits"]["hits"]
-        
-        scan_data = [doc["fields"] for doc in hits]
+        scan_data = [doc["_source"] for doc in hits]
+
         return {"query": q, "results": scan_data}
     return None
