@@ -6,6 +6,10 @@
                     "type": "string",
                     "store": true
                 },
+                "group": {
+                    "type": "string",
+                    "store": true
+                },
                 "scientific_name": {
                     "type": "string",
                     "store": true
