@@ -47,7 +47,7 @@ body {
       margin: 0 auto;
   }
 
-  .thumbnail, .slice-image {
+  .thumbnail, .results .slice-image {
     max-width: 160px;
     float: left;
   }

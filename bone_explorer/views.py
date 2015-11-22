@@ -43,15 +43,15 @@ GROUPS_MAP = [
 
 
 IMAGE_GROUPS = [
-      'http://digimorph.org/images/urchinsm.jpg',
-      'http://digimorph.org/images/sharksm.jpg',
-      'http://digimorph.org/images/hylacineriasm.jpg',
-      'http://digimorph.org/images/possumsm.jpg',
-      'http://digimorph.org/images/turtlesm.jpg',
-      'http://digimorph.org/images/sphenodonsm.jpg',
-      'http://digimorph.org/images/alligatorsm.jpg',
-      'http://digimorph.org/images/emusm.jpg',
-      'http://digimorph.org/images/dino.gif',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Slate_pencil_sea_urchin.jpg/1600px-Slate_pencil_sea_urchin.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/5/59/Caribbean_reef_shark.jpg',
+    'http://voices.nationalgeographic.com/files/2013/11/poison-dart-frog-pumilio-defenses-s2048x1372-p.jpg',
+    '//c1.staticflickr.com/3/2924/14658676205_7c1da2d8d9_h.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Chelonia_mydas_is_going_for_the_air.jpg/1920px-Chelonia_mydas_is_going_for_the_air.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/1/18/Bartagame_fcm.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Alligator_mississippiensis_-_Oasis_Park_-_13.jpg/1920px-Alligator_mississippiensis_-_Oasis_Park_-_13.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/3/32/House_sparrow04.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/6/6d/Laramie_Triceratops_skull.jpg',
 'https://upload.wikimedia.org/wikipedia/commons/7/77/Big-eared-townsend-fledermaus.jpg',
 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Brown_Lemur_in_Andasibe.jpg/1599px-Brown_Lemur_in_Andasibe.jpg'
 ]
