@@ -24,10 +24,22 @@ es = Elasticsearch(es_header)
 # Verify that Python can talk to Bonsai (optional):
 es.ping()
 
-def test(q):
+def do_search(q, group):
     if (es.ping()):
-        query = {"query":{"match":{"name":q}}}
+        query = {}
+
+        match_q = {"match": {"name": q}}
+        if (group):
+            filter = {"term": {"is_skrillex": True}}
+            query = {"query": {"filtered": {"filter": filter, "query": match_q}}}
+        else:
+            query = {"query": match_q}
+        query["fields"] = {"fields":["name"]}
+
         res = es.search(index="test", doc_type="people", body=query)
-        return res
-    else:
-        return "BIGF, you're not good"
+        
+        hits = res["hits"]["hits"]
+        
+        scan_data = [doc["fields"] for doc in hits]
+        return {"query": q, "results": scan_data}
+    return None
