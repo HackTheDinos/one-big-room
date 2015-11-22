@@ -37,7 +37,7 @@ def do_search(q, group):
         else:
             query = {"query": match_q}
 
-        res = es.search(index="scans", doc_type="scans_test", body=query)
+        res = es.search(index="scans2", doc_type="scans_test", body=query)
         hits = res["hits"]["hits"] # why
         
         scan_data = []
@@ -47,4 +47,9 @@ def do_search(q, group):
             scan_data.append(data)
 
         return scan_data
+    return None
+
+def getScanData(id):
+    if (es.ping()):
+        return es.get(index="scans2", doc_type="scans_test", id=id)
     return None
