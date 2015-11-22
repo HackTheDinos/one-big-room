@@ -10,4 +10,8 @@ API_URL = '/api'
 def search():
     query = request.args.get('query', None)
     group = request.args.get('group', None)
-    return jsonify(do_search(query, group))
+    
+    return jsonify({
+        'query': query,
+        'results': do_search(query, group)
+    })

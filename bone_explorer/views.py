@@ -1,6 +1,7 @@
 from bone_explorer import app
 import pystache
 import os
+from flask import request
 from lib import specimen
 
 pystache.defaults.SEARCH_DIRS.append("./bone_explorer/static/templates")
@@ -11,16 +12,35 @@ def get_mustache_file(tpl_file):
 def mustache_render(tpl_file, data):
     return pystache.render(get_mustache_file(tpl_file), data)
 
+GROUPS = [
+    "Non-vertebrates",
+    "Sharks, Fishes &amp; Other Fish-like Creatures",
+    "Amphibians",
+    "Mammals and Their Extinct Relatives",
+    "Turtles",
+    "Lizards, Snakes and Their Relatives",
+    "Alligators and Crocodiles",
+    "Birds",
+    "Dinosaurs, Pterosaurs and Their Extinct Relatives",
+    "Primates",
+    "Bats"
+]
+
 @app.route('/')
 def index():
+    inital_group = request.args.get('group', None);
     data = {
         'pageTitle': 'Search for Specimens',
-        'results_template': get_mustache_file('results.mustache'),
+        'inital_query': request.args.get('query', None),
+        'groups': [ {
+                'name': group,
+                'selected' : group == inital_group
+            } for group in GROUPS ]
     }
     return mustache_render('search.mustache', data)
 
 @app.route('/specimen')
-def specimen():
+def specimen_view():
     data = {
         'pageTitle': 'Specimen Page'
     }

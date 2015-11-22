@@ -7,14 +7,8 @@
   <div class="row">
     <h1>{{scientificName}} <small>{{commonName}}</small> </h1>
     
-
-
-    <ol class="breadcrumb">
-      {{#classification}}
-        <li>{{.}}</li> 
-      {{/classification}} 
-    </ol>
-
+    {{>classification}}
+    
     <div class="media">
 
         <div class="media-left">

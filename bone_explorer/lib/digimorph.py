@@ -3,6 +3,9 @@ import math
 BASE_URL = 'http://digimorph.org/'
 PREVIEW_SLICES = 50
 
+def get_specimen_url(specimen_name):
+    return BASE_URL + '/specimens/%s' % specimen_name.replace(" ", "_")
+
 def get_slice_url(specimen_url, slice):
     return specimen_url + '/applet/slicessm/coronal/cor%04d.jpg' % slice
 

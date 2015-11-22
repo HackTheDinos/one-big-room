@@ -1,11 +1,18 @@
 {{#results_list}}
-  <div class="pannel">
-    <div class="panel-header">
-      <h3>{{scientificName}}</h3>
-      <span>{{commonName}}</span>
-    </div>
-    <div class="panel-body">
+<div class="media">
+  <div class="media-left">
+    <div class="media-object">
       <img src="{{imageUrl}}" alt="" />
+      {{>slice_preview}}      
     </div>
   </div>
+  <div class="media-body">
+    <h3 class="media-heading">
+      <a href="/specimen">{{scientific_name}}</a>
+      <small>{{commonName}}</small>
+    </h3>
+    {{>classification}}
+    {{wikipedia}}
+  </div>
+</div>
 {{/results_list}}

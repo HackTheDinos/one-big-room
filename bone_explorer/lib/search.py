@@ -42,5 +42,5 @@ def do_search(q, group):
         
         scan_data = [doc["_source"] for doc in hits]
 
-        return {"query": q, "results": scan_data}
+        return scan_data
     return None

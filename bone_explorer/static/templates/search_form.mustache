@@ -1,12 +1,21 @@
 <form id="search" class="form-inline">
   <div class="input-group">
-    <input name="query" type="text" class="form-control">
+    <input name="query" type="text" class="form-control" value="{{inital_query}}"/>
     <label for="query">Search by common or scientific name</label>
   </div>
   <div class="input-group">
     <select name="group" class="form-control">
-      <option value="test">test</option>
+      <option value="">Any Group</option>
+      {{#groups}}
+        <option value="{{name}}" {{#selected}}selected{{/selected}}>
+          {{name}}
+        </option>
+      {{/groups}}
     </select>
     <label for="query">Group</label>
+  </div>
+  <div class="input-group">
+    <button type="submit" class="form-control btn btn-default">Search</button>
+    <label>&nbsp;</label>
   </div>
 </form>
