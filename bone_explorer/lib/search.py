@@ -37,5 +37,9 @@ def do_search(q, group):
         query["fields"] = {"fields":["name"]}
 
         res = es.search(index="test", doc_type="people", body=query)
-        return {"query": q, "results": [res["hits"]["hits"][0]["fields"]]}
+        
+        hits = res["hits"]["hits"]
+        
+        scan_data = [doc["fields"] for doc in hits]
+        return {"query": q, "results": scan_data}
     return None
