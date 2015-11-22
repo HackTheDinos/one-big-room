@@ -1,0 +1,19 @@
+{{>head}}
+{{>header}}
+
+<div class="container bs-docs-container">
+
+  <div class="row">
+    <h1>{{pageTitle}}</h1>
+
+    {{#hierarchy}}
+    <ul>
+      <li>{{.}}</li>
+    </ul>
+
+    {{/hierarchy}}
+
+  </div>
+</div>
+
+{{>footer}}

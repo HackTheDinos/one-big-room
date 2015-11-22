@@ -5,7 +5,9 @@
 <div class="container bs-docs-container">
 
   <div class="row">
-    <h1>{{pageTitle}}</h1>
+    <h1>{{scientificName}} <small>{{commonName}}</small> </h1>
+    
+
 
     <ol class="breadcrumb">
       {{#classification}}
@@ -33,11 +35,31 @@
 
         <div class="media-body">
           <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Details</h3>
-            </div>
             <div class="panel-body">
-              {{>specimen_detail}}
+
+                <div class="row">
+                  <div class="col-md-4">
+                    Added by: {{addedBy}}
+                    Uploaded on: {{addedByDate}}
+                  </div>
+
+
+                  <div class="col-md-8">
+                    <div class="table-responsive">
+                      <table class="table-striped" style="width:100%">
+                        <tr>
+                          <td>data1</td>
+                          <td>data2</td>
+                        </tr>
+                        <tr>
+                          <td>data1</td>
+                          <td>data2</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
              </div>
           </div>
 

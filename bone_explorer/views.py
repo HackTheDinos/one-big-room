@@ -32,3 +32,16 @@ def about():
     return mustache_render('about.mustache', {
         'pageTitle': 'About Bone Explorer'
     })
+    return mustache_render('results.mustache', data)
+
+@app.route('/browse')
+def browse():
+    pageTitle = 'Explore Species'
+
+    data = {
+      'pageTitle' : pageTitle,
+      'hierarchy' : ['Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus', 'Species']
+          
+    }
+
+    return mustache_render('browse.mustache', data)
