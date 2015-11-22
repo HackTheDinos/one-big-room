@@ -31,7 +31,7 @@ def index():
     inital_group = request.args.get('group', None);
     data = {
         'pageTitle': 'Search for Specimens',
-        'inital_query': request.args.get('query', None),
+        'inital_query': request.args.get('query', ''),
         'groups': [ {
                 'name': group,
                 'selected' : group == inital_group

@@ -20,6 +20,7 @@ def get_result_view_data(result):
   specimen_url = digimorph.get_specimen_url(result['scientific_name'])
   slice_urls = digimorph.get_slice_urls(specimen_url, 476)
   result.update({
+    'url': "specimen/" + result['id'],
     'digimorph_url': specimen_url,
     'imageUrl': digimorph.get_preview_url(specimen_url),
     'slice_data': {
