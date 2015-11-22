@@ -24,7 +24,7 @@ def mustache_render(tpl_file, data):
 
 @app.route('/')
 def index():
-    return mustache_render('index.mustache', { 'message': 'Hello!'})
+    return mustache_render('index.mustache', { 'pageTitle': 'Bone Explorer'})
 
 @app.route('/specimen')
 def specimen():
