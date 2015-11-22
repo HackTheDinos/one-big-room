@@ -27,7 +27,7 @@ GROUPS = [
 ]
 
 
-GROUPS_MAP = {
+GROUPS_MAP = [
   { "Non-vertebrates" : ["Arthropods", "Brachiopoda", "Plants", "Echinoderms", "Mollusks", "Foraminifera"] },
   { "Sharks, Fishes and Other Fish-like Creatures" : ["Actinopterygians", "Chondrichthyians", "Actinistia", "Sarcopterygians", "Dipnoi"] },
   { "Amphibians" : ["Anura", "Caudata", "Gymnophiona"]},
@@ -39,7 +39,7 @@ GROUPS_MAP = {
   {"Dinosaurs, Pterosaurs and Their Extinct Relatives" : ["Pterosaurs", "Non-avian Dinosaurs"]},
   {"Bats" : []},
   {"Primates" : []}
-}
+]
 
 
 IMAGE_GROUPS = [
