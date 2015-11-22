@@ -1,5 +1,6 @@
 import digimorph
 import json 
+import math
 
 def get_common_data(result):
   specimen_url = digimorph.get_specimen_url(result['scientific_name'])
@@ -10,7 +11,7 @@ def get_common_data(result):
     'imageUrl': digimorph.get_preview_url(specimen_url),
     'slice_data': {
           'slice_urls': json.dumps(slice_urls),
-          'first_slice': slice_urls[0]
+          'first_slice': slice_urls[int(math.floor(len(slice_urls)/2))]
     },
     'classification': [
         result.get('phylum', None),

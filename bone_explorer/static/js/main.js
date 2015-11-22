@@ -51,10 +51,13 @@ $(function() {
         if ($form.find('[name=query]').val() != '') {
             var query_params = $form.serialize();
             $.get("/api/search", query_params)
-                .success(function(response) {
+                .done(function(response) {
                     render(response);
                     history.pushState(response, "", "?" + query_params);
-                });
+                })
+                .fail(function(jqXHR, textStatus) {
+                    alert(jqXHR.status + ": " + jqXHR.statusText);
+                })
         }
     }).submit();
     init_slice_previews();
