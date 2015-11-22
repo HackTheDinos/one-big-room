@@ -34,8 +34,10 @@ def do_search(q, group):
         match_q = {"dis_max": {"queries": matches}}
 
         if (group):
-            filter = {"term": {"is_skrillex": True}}
-            query = {"query": {"filtered": {"filter": filter, "query": match_q}}}
+            filter = {"term": {"is_skrillex": False}}
+            query = {"query": {"filtered": {"filter": filter}}}
+            if (q):
+                query["query"]["filtered"]["query"] = match_q
         else:
             query = {"query": match_q}
 
@@ -51,7 +53,7 @@ def do_search(q, group):
         return scan_data
     return None
 
-def getScanData(id):
+def get_scan_data(id):
     if (es.ping()):
         return es.get(index=index_name, doc_type="scans_test", id=id)["_source"]
     return None
