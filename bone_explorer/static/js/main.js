@@ -53,7 +53,9 @@ function search(query_params) {
 }
 
 window.onpopstate = function(e) {
-    search(e.state);
+    if (e.state) {
+        search(e.state);
+    }
 }
 
 $(function() {
