@@ -40,7 +40,11 @@ def do_search(q, group):
         res = es.search(index="scans", doc_type="scans_test", body=query)
         hits = res["hits"]["hits"] # why
         
-        scan_data = [doc["_source"] for doc in hits]
+        scan_data = []
+        for doc in hits:
+            data = doc["_source"]
+            data["id"] = doc["_id"]
+            scan_data.append(data)
 
         return scan_data
     return None
