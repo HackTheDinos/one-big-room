@@ -59,7 +59,7 @@ def specimen_view(specimen_id=None):
     data = {
         'pageTitle': 'Specimen Page'
     }
-    data.update(specimen.get_detail_view_data(search.getScanData(specimen_id)))
+    data.update(specimen.get_detail_view_data(search.get_scan_data(specimen_id)))
     return mustache_render('specimen.mustache', data)
 
 @app.route('/about')

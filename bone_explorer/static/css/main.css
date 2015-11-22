@@ -6,6 +6,15 @@ body {
   margin-top:10px;
 }
 
+.top-buffer-lg {
+  margin-top:30px;
+}
+
+.padding-md {
+  padding:20px;
+  line-height:1.7em;
+}
+
 #results .media-object {
     white-space: nowrap;
 }
