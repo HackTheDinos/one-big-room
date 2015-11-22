@@ -2,7 +2,11 @@ import flask
 import sys
 import logging
 
-app = flask.Flask(__name__)
+class MyFlask(flask.Flask):
+    def get_send_file_max_age(self, name):
+        return 60
+
+app = MyFlask(__name__)
 
 app.debug = True
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
