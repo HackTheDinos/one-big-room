@@ -1,19 +1,21 @@
 {{#results_list}}
-<div class="media">
-  <div class="media-left">
-    <div class="media-object">
-      <img src="{{imageUrl}}" alt="" />
-      {{>slice_preview}}      
+  <div class="row top-buffer-lg">
+    <div class="col-md-4">
+      <a href="#" class="thumbnail">
+        <img src="{{imageUrl}}" alt="" />
+      </a>
+      <a href="#" class="thumbnail">
+        {{>slice_preview}}      
+      </a>
     </div>
-  </div>
-  <div class="media-body padding-md">
-    <h3 class="media-heading">
-      <a href="{{url}}">{{scientific_name}}</a>
-      <small>{{commonName}}</small>
-    </h3>
-    {{>classification}}
-    <a href="{{digimorph_url}}">Digimorph</a>
-    {{wikipedia}}
-  </div>
-</div>
+
+    <div class="col-md-8">
+        <h3 class="media-heading">
+          <a href="{{url}}">{{scientific_name}}</a>
+          <small>{{commonName}}</small>
+        </h3>
+        {{>classification}}
+        {{wikipedia_snippet}}
+    </div>
+ </div>
 {{/results_list}}
