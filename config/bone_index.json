@@ -65,6 +65,14 @@
                 "is_skrillex": {
                     "type": "boolean",
                     "store": true
+                },
+                "slice_count": {
+                    "type": "integer",
+                    "store": true
+                },
+                "zero_padding": {
+                    "type": "integer",
+                    "store": true
                 }
             }
         }
