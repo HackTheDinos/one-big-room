@@ -21,6 +21,8 @@ es_header = [{
 # Instantiate the new Elasticsearch connection:
 es = Elasticsearch(es_header)
 
+index_name = "scans"
+
 text_fields = ["species", "phylum", "family", "class", "genus", "scientific_name", "wikipedia_snippet",
         "wikipedia_misc", "gbif_snippet", "gbif_misc"]
 
@@ -37,7 +39,7 @@ def do_search(q, group):
         else:
             query = {"query": match_q}
 
-        res = es.search(index="scans2", doc_type="scans_test", body=query)
+        res = es.search(index=index_name, doc_type="scans_test", body=query)
         hits = res["hits"]["hits"] # why
         
         scan_data = []
@@ -49,7 +51,7 @@ def do_search(q, group):
         return scan_data
     return None
 
-def get_scan_data(id):
+def getScanData(id):
     if (es.ping()):
-        return es.get(index="scans2", doc_type="scans_test", id=id)["_source"]
+        return es.get(index=index_name, doc_type="scans_test", id=id)["_source"]
     return None

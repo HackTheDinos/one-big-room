@@ -1,6 +1,6 @@
 <?php
 
-$file = fopen("species-scraper/digimorph_species_list/dinos.json", "r");
+$file = fopen($argv[1], 'r');
 $out_tmp = fopen("tmp.json", 'w');
 
 $line = fgets($file);
@@ -10,7 +10,7 @@ foreach($docs as $doc) {
     $desc = "";
     if (isset($doc->descriptions)) {
         foreach($doc->descriptions as $description) {
-            $desc .= $description->description;
+            $desc .= preg_replace('/[^ A-Za-z0-9\-]/', '', $description->description);
         }
     }
     $spec = isset($doc->species) ? $doc->species : (isset($doc->SPECIES) ? $doc->SPECIES : "");
@@ -40,7 +40,7 @@ foreach($docs as $doc) {
 
     $blob = json_encode($doc);
     $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
-    $index_cmd = "curl -XPOST \"{$bonsai_url}/scans2/scans_test/\" -d '{$blob}'\n";
+    $index_cmd = "curl -XPOST \"{$bonsai_url}/scans/scans_test/\" -d '{$blob}'\n";
 
     fwrite($out_tmp, $index_cmd);
 
