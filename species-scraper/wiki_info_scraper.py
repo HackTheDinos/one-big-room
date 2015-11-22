@@ -10,7 +10,6 @@ SPECIES_FILES = glob.glob('digimorph_species_list/*.json')
 
 BASE = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&redirects&titles="
 
-SPECIES = ["Alioramus", "Melanerpes", "Saurornithoides", "Hydromantes platycephalus"]
 MASTER_INTROS = {}
 
 def get_intro_json(list_json):
