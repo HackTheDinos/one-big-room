@@ -34,30 +34,32 @@ function render(response) {
     }, templateLoader));
 
     init_slice_previews();
+    $("#search").find('[name=query]').val(response.query);
     document.title = response.query + " - " + title;
 }
 
+function search(query_params) {
+    $.get("/api/search", query_params)
+        .done(function(response) {
+            render(response);
+            history.pushState(query_params, "", "?" + query_params);
+        })
+        .fail(function(jqXHR, textStatus) {
+            alert(jqXHR.status + ": " + jqXHR.statusText);
+        })
+}
+
 window.onpopstate = function(e) {
-    render(e.state);
-    $("#search").find('[name=query]').val(e.state.query);
+    search(e.state);
 }
 
 $(function() {
     result_template = templateLoader('results');
-
     $("#search").submit(function(e) {
         e.preventDefault();
         var $form = $(this);
         if ($form.find('[name=query]').val() != '') {
-            var query_params = $form.serialize();
-            $.get("/api/search", query_params)
-                .done(function(response) {
-                    render(response);
-                    history.pushState(response, "", "?" + query_params);
-                })
-                .fail(function(jqXHR, textStatus) {
-                    alert(jqXHR.status + ": " + jqXHR.statusText);
-                })
+            search($form.serialize())
         }
     }).submit();
     init_slice_previews();
