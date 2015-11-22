@@ -12,11 +12,11 @@ host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
 
 # Connect to cluster over SSL using auth for best security:
 es_header = [{
-      'host': host,
-        'port': 443,
-          'use_ssl': True,
-            'http_auth': (auth[0],auth[1])
-            }]
+    'host': host,
+    'port': 443,
+    'use_ssl': True,
+    'http_auth': (auth[0],auth[1])
+}]
 
 # Instantiate the new Elasticsearch connection:
 es = Elasticsearch(es_header)
