@@ -43,50 +43,45 @@ foreach($docs as $doc) {
     if (isset($species[$spec])) {
         $urls = $species[$spec]["urls"];
         $group = $species[$spec]["group"];
-    } else {
-        echo "no data for $spec\n";
-        $url_slug = implode("_", explode(" ", $spec));
-        $urls = ["http://digimorph.org/specimens/$url_slug"];
-        $group = "";
-    }
 
-    foreach($urls as $url) {
+        foreach($urls as $url) {
 
-        $sc = isset($slice_data[$url]) ? $slice_data[$url]["slice_count"] : 0;
-        $zp = isset($slice_data[$url]) ? $slice_data[$url]["zero_padding"] : 0;
+            $sc = isset($slice_data[$url]) ? $slice_data[$url]["slice_count"] : 0;
+            $zp = isset($slice_data[$url]) ? $slice_data[$url]["zero_padding"] : 0;
 
-        $doc = [
-            "specimen_url" => $url,
-            "group" => $group,
-            "scientific_name" => $doc->scientificName,
-            "vernacular_name" => $vernacular_name,
-            "phylum" => $doc->phylum,
-            "class" => $doc->class,
-            "order" => $doc->order,
-            "family" => $doc->family,
-            "genus" => $doc->genus,
-            "species" => $spec,
-            "parent" => $doc->parent,
-            "num_descendents" => $doc->numDescendants,
-            "wikipedia_snippet" => $intro,
-            "wikipedia_misc" => "",
-            "gbif_snippet" => $desc,
-            "gbif_misc" => "",
-            "is_skrillex" => false,
-            "slice_count" => $sc,
-            "zero_padding" => $zp,
-        ];
+            $doc = [
+                "specimen_url" => $url,
+                "group" => $group,
+                "scientific_name" => $doc->scientificName,
+                "vernacular_name" => $vernacular_name,
+                "phylum" => $doc->phylum,
+                "class" => $doc->class,
+                "order" => $doc->order,
+                "family" => $doc->family,
+                "genus" => $doc->genus,
+                "species" => $spec,
+                "parent" => $doc->parent,
+                "num_descendents" => $doc->numDescendants,
+                "wikipedia_snippet" => $intro,
+                "wikipedia_misc" => "",
+                "gbif_snippet" => $desc,
+                "gbif_misc" => "",
+                "is_skrillex" => false,
+                "slice_count" => $sc,
+                "zero_padding" => $zp,
+            ];
 
-        $blob = json_encode($doc);
-        $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
-        $index_cmd = "curl -XPOST \"{$bonsai_url}/scans/scans_test/\" -d '{$blob}'\n";
+            $blob = json_encode($doc);
+            $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
+            $index_cmd = "curl -XPOST \"{$bonsai_url}/scans2/scans_test/\" -d '{$blob}'\n";
 
-        fwrite($out_tmp, $index_cmd);
+            fwrite($out_tmp, $index_cmd);
 
-        try {
-            shell_exec($index_cmd);
-        } catch (Exception $e) {
-            echo $e;
+            try {
+                shell_exec($index_cmd);
+            } catch (Exception $e) {
+                echo $e;
+            }
         }
     }
 }

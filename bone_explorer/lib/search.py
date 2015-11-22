@@ -24,7 +24,7 @@ es = Elasticsearch(es_header)
 index_name = "scans2"
 
 text_fields = ["species", "phylum", "family", "class", "genus", "scientific_name", "wikipedia_snippet",
-        "wikipedia_misc", "gbif_snippet", "gbif_misc"]
+        "wikipedia_misc", "gbif_snippet", "gbif_misc", "groups"]
 
 def do_search(q, groups):
     if (es.ping()):
