@@ -1,6 +1,6 @@
 from bone_explorer import app
 from flask import request, jsonify
-from search import test
+from lib.search import test
 
 API_URL = '/api'
 
