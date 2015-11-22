@@ -7,7 +7,12 @@ $line = fgets($file);
 $docs = json_decode($line);
 $ind = 0;
 foreach($docs as $doc) {
-    $desc = isset($doc->descriptions->description) ? $doc->descriptions->description : "";
+    $desc = "";
+    if (isset($doc->descriptions)) {
+        foreach($doc->descriptions as $description) {
+            $desc .= $description->description;
+        }
+    }
     $spec = isset($doc->species) ? $doc->species : (isset($doc->SPECIES) ? $doc->SPECIES : "");
     $vernacular_name = isset($doc->vernacularNames->vernacularName) ? $doc->vernacularNames->vernacularName : "";
 
