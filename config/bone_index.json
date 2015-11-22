@@ -1,0 +1,20 @@
+{
+    "mappings": {
+        "people": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "store": true
+                },
+                "age": {
+                    "type": "integer",
+                    "store": false
+                },
+                "is_skrillex": {
+                    "type": "boolean",
+                    "store": true
+                }
+            } 
+        }
+    }
+}
