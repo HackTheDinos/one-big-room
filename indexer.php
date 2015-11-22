@@ -8,6 +8,7 @@ $file = fopen($argv[1], 'r');
 $intro_file = fopen("species-scraper/intros.json", 'r');
 $url_file = fopen("url_map.json", 'r');
 $out_tmp = fopen("tmp.json", 'w');
+$slice_file = fopen("slice_data.json", 'r');
 
 $line = fgets($file);
 $docs = json_decode($line);
@@ -20,6 +21,8 @@ while ($uline = fgets($url_file)) {
     $url_data = json_decode($uline, true);
     $species = array_merge($species, $url_data);
 }
+
+$slice_data = json_decode(fgets($slice_file), true);
 
 $ind = 0;
 foreach($docs as $doc) {
@@ -47,6 +50,9 @@ foreach($docs as $doc) {
         $group = "";
     }
 
+    $sc = isset($slices[$url]) ? $slices[$url]["slice_count"] : 0;
+    $zp = isset($slices[$url]) ? $slices[$url]["zero_padding"] : 0;
+
     foreach($urls as $url) {
         $doc = [
             "specimen_url" => $url,
@@ -66,11 +72,13 @@ foreach($docs as $doc) {
             "gbif_snippet" => $desc,
             "gbif_misc" => "",
             "is_skrillex" => false,
+            "slice_count" => $sc,
+            "zero_padding" => $zp,
         ];
 
         $blob = json_encode($doc);
         $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
-        $index_cmd = "curl -XPOST \"{$bonsai_url}/scans/scans_test/\" -d '{$blob}'\n";
+        $index_cmd = "curl -XPOST \"{$bonsai_url}/scans2/scans_test/\" -d '{$blob}'\n";
 
         fwrite($out_tmp, $index_cmd);
 
@@ -86,3 +94,4 @@ fclose($file);
 fclose($out_tmp);
 fclose($url_file);
 fclose($intro_file);
+fclose($slice_file);
