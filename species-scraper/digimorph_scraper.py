@@ -15,21 +15,12 @@ def scrape_digimorph_html_tables(digimorph_url):
 	dinos_hopefully = soup('table')[5].findAll("a")
 	grouped = [dinos_hopefully[i:i+3] for i in xrange(0, len(dinos_hopefully), 3)] 
 	chopped = grouped[8:]
-	final = []
+	names = []
 	for c in chopped:
 		for a in c:
-			if a.get("name"):
-				final.append(a.get("name"))
-			if a.get("href"):
-				final.append(BASE + a.get("href"))
 			if a.text:
-				final.append(a.text)
-	regrouped = [final[i:i+3] for i in xrange(0, len(final), 3)] # could probably not group twice but ??!?
-	keys = ["group", "link", "name"]
-	actual_final = []
-	for g in regrouped:
-		actual_final.append(dict(zip(keys, g)))
-	return json.dumps(actual_final)
+				names.append(a.text)
+	return set(names[1::2])
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
