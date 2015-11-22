@@ -33,7 +33,7 @@ foreach($docs as $doc) {
 
     $blob = json_encode($doc);
     $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
-    $index_cmd = "curl -XPOST \"{$bonsai_url}/scans/scans_test/\" -d '{$blob}'\n";
+    $index_cmd = "curl -XPOST \"{$bonsai_url}/scans2/scans_test/\" -d '{$blob}'\n";
 
     fwrite($out_tmp, $index_cmd);
 
