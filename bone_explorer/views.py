@@ -1,6 +1,7 @@
 from bone_explorer import app
 import pystache
 import os
+import urllib
 from flask import request
 from lib import specimen, search
 
@@ -93,7 +94,8 @@ def browse():
     for index, g in enumerate(GROUPS):
       x = {
           'group' : g,
-          'image' : IMAGE_GROUPS[index]
+          'image' : IMAGE_GROUPS[index],
+          'urlgroup' : urllib.quote(g)
         }
       imgGroups.append(x)
 
