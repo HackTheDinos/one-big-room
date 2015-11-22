@@ -1,20 +1,60 @@
 {
     "mappings": {
-        "people": {
+        "scans_test": {
             "properties": {
-                "name": {
+                "scientific_name": {
                     "type": "string",
                     "store": true
                 },
-                "age": {
+                "species": {
+                    "type": "string",
+                    "store": true
+                },
+                "family": {
+                    "type": "string",
+                    "store": false
+                },
+                "phylum": {
+                    "type": "string",
+                    "store": false
+                },
+                "class": {
+                    "type": "string",
+                    "store": false
+                },
+                "genus": {
+                    "type": "string",
+                    "store": false
+                },
+                "parent": {
+                    "type": "string",
+                    "store": false
+                },
+                "num_descendents": {
                     "type": "integer",
+                    "store": false
+                },
+                "wikipedia_snippet": {
+                    "type": "string",
+                    "store": true
+                },
+                "wikipedia_misc": {
+                    "type": "string",
+                    "store": false
+                },
+                "gbif_snippet": {
+                    "type": "string",
+                    "store": true
+                },
+                "gbif_misc": {
+                    "type": "string",
                     "store": false
                 },
                 "is_skrillex": {
                     "type": "boolean",
                     "store": true
                 }
-            } 
+            }
         }
     }
 }
