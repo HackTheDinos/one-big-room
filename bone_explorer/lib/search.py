@@ -34,8 +34,8 @@ def do_search(q, group):
             query = {"query": {"filtered": {"filter": filter, "query": match_q}}}
         else:
             query = {"query": match_q}
-        #query["fields"] = {"fields":["name"]}
+        query["fields"] = {"fields":["name"]}
 
         res = es.search(index="test", doc_type="people", body=query)
-        return res
+        return {"query": q, "results": [res["hits"]["hits"][0]["fields"]]}
     return None
