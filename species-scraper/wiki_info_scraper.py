@@ -51,7 +51,7 @@ for json_file in SPECIES_FILES:
     f = open(json_file, 'r')
     file_json = f.read()
     intros = get_intro_json(file_json)
-    MASTER_INTROS[f.name] = intros
+    MASTER_INTROS.update(intros)
 
 with open('intros.json', 'w') as outfile:
     json.dump(MASTER_INTROS, outfile)
