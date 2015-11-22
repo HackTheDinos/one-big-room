@@ -9,7 +9,7 @@ def get_slice_url(specimen_url, slice):
 def get_slice_urls(specimen_url, total_slices):
     delta = int(math.floor(total_slices / PREVIEW_SLICES))
     return [ get_slice_url(specimen_url, slice)
-        for slice in range(0, total_slices, delta) ]
+        for slice in range(1, total_slices, delta) ]
 
 def get_preview_url(specimen_url):
     return specimen_url + '/specimen.jpg'

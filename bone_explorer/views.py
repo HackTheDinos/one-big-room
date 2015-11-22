@@ -2,11 +2,11 @@ from bone_explorer import app
 import pystache
 import os
 from lib import digimorph
+import json
 
 pystache.defaults.SEARCH_DIRS.append("./bone_explorer/static/templates")
 
 specimen_url = 'http://digimorph.org/specimens/anas_platyrhynchos/skull'
-total_slices = 372
 mallardData = {  
   'imageUrl': digimorph.get_preview_url(specimen_url),
   'scientificName':'Anas platyrhynchos',
@@ -16,7 +16,6 @@ mallardData = {
   'addedByDate': '5/12/98',
   'classification' : ['Aves', 'Anseriformes', 'Anatidae'],
   'wikipedia': 'The mallard or wild duck (Anas platyrhynchos) is a dabbling duck which breeds throughout the temperate and subtropical Americas, Europe, Asia, and North Africa, and has been introduced to New Zealand, Australia, Peru, Brazil, Uruguay, Argentina, Chile, the Falkland Islands and South Africa.[2] This duck belongs to the subfamily Anatinae of the waterfowl family',
-  'slice_urls': digimorph.get_slice_urls(specimen_url, total_slices)
 }
 
 def mustache_render(tpl_file, data):
@@ -33,6 +32,13 @@ def specimen():
     data = {}
     data['pageTitle'] = pageTitle
     data.update(mallardData)
+
+    total_slices = 372
+    slice_urls = digimorph.get_slice_urls(specimen_url, total_slices)
+    data['slice_data'] = {
+                    'slice_urls': json.dumps(slice_urls),
+                    'first_slice': slice_urls[0]
+                }
 
     return mustache_render('specimen.mustache', data)
 

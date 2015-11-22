@@ -13,9 +13,22 @@
       {{/classification}} 
     </ol>
 
-      <div class="media">
-        <div class="media-left"
-          <a href="#"> <img  src="{{imageUrl}}" class="media-object"/></a>
+    <div class="media">
+
+        <div class="media-left">
+          <div class="panel">
+            <div class="panel-body">
+              <img  src="{{imageUrl}}" class="media-object"/>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Slice Preview</h3>
+            </div>
+            <div class="panel-body">
+              {{>slice_preview}}
+            </div>
+          </div>
         </div>
 
         <div class="media-body">
@@ -27,12 +40,14 @@
               {{>specimen_detail}}
              </div>
           </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              {{wikipedia}}
+            </div>
+          </div>
         </div>
-        </div>
-  </div>
-  <div class="row">
-    <div class="container">
-      {{wikipedia}}
+
     </div>
   </div>
 </div>
