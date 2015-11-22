@@ -1,6 +1,7 @@
-To start:
+[https://bone-explorer.herokuapp.com/](https://bone-explorer.herokuapp.com/)
+
+running locally:
 * Install the [Heroku toolbelt](https://toolbelt.heroku.com/)
-* `pip install Flask gunicorn`
-* `pip install -r requirements.txt --allow-all-external`
+* `pip install -r requirements.txt`
 * ```BONSAI_URL=`heroku config:get BONSAI_URL````
 * `python run.py`

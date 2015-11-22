@@ -1,4 +1,4 @@
-#!usr/bin/env pytjon
+#!usr/bin/env python
 
 import requests
 from bs4 import BeautifulSoup

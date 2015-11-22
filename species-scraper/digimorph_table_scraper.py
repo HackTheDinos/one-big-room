@@ -32,3 +32,4 @@ if __name__ == '__main__':
     parser.add_argument("durl")
     args = parser.parse_args()
     scrape_digimorph_html_tables(args.durl)
+    
