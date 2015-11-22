@@ -14,7 +14,7 @@ def mustache_render(tpl_file, data):
 
 GROUPS = [
     "Non-vertebrates",
-    "Sharks, Fishes &amp; Other Fish-like Creatures",
+    "Sharks, Fishes and Other Fish-like Creatures",
     "Amphibians",
     "Mammals and Their Extinct Relatives",
     "Turtles",
@@ -22,8 +22,23 @@ GROUPS = [
     "Alligators and Crocodiles",
     "Birds",
     "Dinosaurs, Pterosaurs and Their Extinct Relatives",
-    "Primates",
-    "Bats"
+    "Bats",
+    "Primates"
+]
+
+
+IMAGE_GROUPS = [
+      'http://digimorph.org/images/urchinsm.jpg',
+      'http://digimorph.org/images/sharksm.jpg',
+      'http://digimorph.org/images/hylacineriasm.jpg',
+      'http://digimorph.org/images/possumsm.jpg',
+      'http://digimorph.org/images/turtlesm.jpg',
+      'http://digimorph.org/images/sphenodonsm.jpg',
+      'http://digimorph.org/images/alligatorsm.jpg',
+      'http://digimorph.org/images/emusm.jpg',
+      'http://digimorph.org/images/dino.gif',
+'https://upload.wikimedia.org/wikipedia/commons/7/77/Big-eared-townsend-fledermaus.jpg',
+'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Brown_Lemur_in_Andasibe.jpg/1599px-Brown_Lemur_in_Andasibe.jpg'
 ]
 
 @app.route('/')
@@ -56,12 +71,22 @@ def about():
 
 @app.route('/browse')
 def browse():
-    pageTitle = 'Explore Species'
+    pageTitle = 'Explore Species by Groups'
+  
+    imgGroups = []
+
+    for index, g in enumerate(GROUPS):
+      x = {
+          'group' : g,
+          'image' : IMAGE_GROUPS[index]
+        }
+      imgGroups.append(x)
+
+
 
     data = {
       'pageTitle' : pageTitle,
-      'hierarchy' : ['Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus', 'Species']
-          
+      'hierarchy' : imgGroups
     }
 
     return mustache_render('browse.mustache', data)

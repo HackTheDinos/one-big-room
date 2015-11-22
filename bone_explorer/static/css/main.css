@@ -19,3 +19,7 @@ body {
 .input-group .form-control:first-child {
     border-radius: 4px;
 }
+
+.carousel-inner > .item > img {
+      margin: 0 auto;
+  }
