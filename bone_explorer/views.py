@@ -39,8 +39,8 @@ def index():
     }
     return mustache_render('search.mustache', data)
 
-@app.route('/specimen')
-def specimen_view():
+@app.route('/specimen/<specimen_id>')
+def specimen_view(specimen_id=None):
     data = {
         'pageTitle': 'Specimen Page'
     }
