@@ -5,9 +5,17 @@
   <h1>{{pagetitle}}</h1>
 
   {{#resultsList}}
-  <ul class="list-group">
-    <li class="list-group-item">{{.}}</li>
-  </ul>
+    <div class="row top-buffer">
+      <div class="col-md-2">
+        <div class="thumbnail">
+          <img src="{{imageUrl}}" alt="" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h3>{{scientificName}}</h3>
+        {{commonName}}
+      </div>
+    </div>
   {{/resultsList}}
 
 </div>

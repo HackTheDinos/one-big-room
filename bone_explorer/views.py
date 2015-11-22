@@ -48,7 +48,7 @@ def results():
     pageTitle = 'Search Results'
 
     data = {
-       'resultsList' : [ mallardData ],
+       'resultsList' : [ mallardData, mallardData ],
        'pageTitle' : pageTitle
     }
-    return mustache_render('results.mustache', { 'message': 'Hello!'})
+    return mustache_render('results.mustache', data)
