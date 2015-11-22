@@ -21,5 +21,6 @@ def get_species_data(base, param_list, species_group):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("params", nargs="+")
+	parser.add_argument("species")
 	args = parser.parse_args()
-	get_species_data(BASE, params)
+	get_species_data(BASE, args.params, args.species)
