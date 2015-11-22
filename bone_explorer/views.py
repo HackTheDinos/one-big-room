@@ -2,7 +2,7 @@ from bone_explorer import app
 import pystache
 import os
 from flask import request
-from lib import specimen
+from lib import specimen, search
 
 pystache.defaults.SEARCH_DIRS.append("./bone_explorer/static/templates")
 
@@ -44,7 +44,7 @@ def specimen_view(specimen_id=None):
     data = {
         'pageTitle': 'Specimen Page'
     }
-    data.update(specimen.get_view_data())
+    data.update(specimen.get_detail_view_data(search.get_scan_data(specimen_id)))
     return mustache_render('specimen.mustache', data)
 
 @app.route('/about')
