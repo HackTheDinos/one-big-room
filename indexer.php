@@ -8,9 +8,11 @@ $docs = json_decode($line);
 $ind = 0;
 foreach($docs as $doc) {
     $desc = isset($doc->descriptions->description) ? $doc->descriptions->description : "";
-    $spec = isset($doc->species) ? $doc->species : isset($doc->SPECIES) ? $doc->SPECIES : "";
+    $spec = isset($doc->species) ? $doc->species : (isset($doc->SPECIES) ? $doc->SPECIES : "");
     $vernacular_name = isset($doc->vernacularNames->vernacularName) ? $doc->vernacularNames->vernacularName : "";
-    $url = "http://digimorph.org/specimens/$spec";
+
+    $url_slug = implode("_", explode(" ", $spec));
+    $url = "http://digimorph.org/specimens/$url_slug";
 
     $doc = [
         "specimen_url" => $url,
@@ -21,7 +23,7 @@ foreach($docs as $doc) {
         "order" => $doc->order,
         "family" => $doc->family,
         "genus" => $doc->genus,
-        "species" => $doc->species,
+        "species" => $spec,
         "parent" => $doc->parent,
         "num_descendents" => $doc->numDescendants,
         "wikipedia_snippet" => "",
