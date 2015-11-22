@@ -17,6 +17,7 @@ def get_common_data(result):
     }
 
   return {
+    'title': result.get('scientific_name') if result.get('scientific_name') else result.get('species'), 
     'digimorph_url': specimen_url,
     'imageUrl': digimorph.get_preview_url(specimen_url),
     'slice_data': slice_data,
