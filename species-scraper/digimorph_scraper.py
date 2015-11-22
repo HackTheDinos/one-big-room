@@ -8,22 +8,25 @@ from bs4 import BeautifulSoup
 BASE = "http://digimorph.org/specimens"
 
 def scrape_digimorph_html_tables(digimorph_url):
-	'''gets the list of species from a digimorph
-	browse page, super hacky and bad sry'''
-	r = requests.get(digimorph_url)
-	soup = BeautifulSoup(r.text)
-	dinos_hopefully = soup('table')[5].findAll("a")
-	grouped = [dinos_hopefully[i:i+3] for i in xrange(0, len(dinos_hopefully), 3)] 
-	chopped = grouped[8:]
-	names = []
-	for c in chopped:
-		for a in c:
-			if a.text:
-				names.append(a.text.strip())
-	return set(names[1::2])
+    '''gets the list of species from a digimorph
+    browse page, super hacky and bad sry'''
+    r = requests.get(digimorph_url)
+    soup = BeautifulSoup(r.text)
+    dinos_hopefully = soup('table')[5].findAll("a")
+    grouped = [dinos_hopefully[i:i+3] for i in xrange(0, len(dinos_hopefully), 3)] 
+    chopped = grouped[8:]
+    data = []
+    for c in chopped:
+        name = c[1].text.strip()
+        datum = {"name": name, "group": c[0]["name"], "url": c[2]["href"]}
+        data.append(datum)
+    f = open("out.json", "a")
+    f.write(json.dumps(data))
+    f.write("\n")
+    f.close()
 
 if __name__ == '__main__':
-	parser = argparse.ArgumentParser()
-	parser.add_argument("durl")
-	args = parser.parse_args()
-	scrape_digimorph_html_tables(args.durl)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("durl")
+    args = parser.parse_args()
+    scrape_digimorph_html_tables(args.durl)
