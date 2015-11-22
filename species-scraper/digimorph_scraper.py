@@ -19,7 +19,7 @@ def scrape_digimorph_html_tables(digimorph_url):
 	for c in chopped:
 		for a in c:
 			if a.text:
-				names.append(a.text)
+				names.append(a.text.strip())
 	return set(names[1::2])
 
 if __name__ == '__main__':
