@@ -15,12 +15,14 @@ def scrape_digimorph_html_tables(digimorph_url):
     dinos_hopefully = soup('table')[5].findAll("a")
     grouped = [dinos_hopefully[i:i+3] for i in xrange(0, len(dinos_hopefully), 3)] 
     chopped = grouped[8:]
-    data = []
+    data = {}
     for c in chopped:
-        name = c[1].text.strip()
-        datum = {"name": name, "group": c[0]["name"], "url": c[2]["href"]}
-        data.append(datum)
-    f = open("out.json", "a")
+        name = c[2].text.strip()
+        try:
+            data[name]["urls"].append(c[2]["href"])
+        except KeyError:
+            data[name] = {"group": c[0]["name"], "urls": [c[2]["href"]]}
+    f = open("url_map.json", "a")
     f.write(json.dumps(data))
     f.write("\n")
     f.close()
