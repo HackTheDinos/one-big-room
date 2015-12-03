@@ -5,10 +5,9 @@ function normalize($str) {
 }
 
 $file = fopen($argv[1], 'r');
-$intro_file = fopen("species-scraper/intros.json", 'r');
-$url_file = fopen("url_map.json", 'r');
-$out_tmp = fopen("tmp.json", 'w');
-$slice_file = fopen("slice_data.json", 'r');
+$intro_file = fopen("../species-scraper/intros.json", 'r');
+$url_file = fopen("./data/url_map.json", 'r');
+$slice_file = fopen("./data/slice_data.json", 'r');
 
 $line = fgets($file);
 $docs = json_decode($line);
@@ -73,9 +72,7 @@ foreach($docs as $doc) {
 
             $blob = json_encode($doc);
             $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
-            $index_cmd = "curl -XPOST \"{$bonsai_url}/scans2/scans_test/\" -d '{$blob}'\n";
-
-            fwrite($out_tmp, $index_cmd);
+            $index_cmd = "curl -XPOST \"{$bonsai_url}/scans3/scans_test/\" -d '{$blob}'\n";
 
             try {
                 shell_exec($index_cmd);
@@ -87,7 +84,6 @@ foreach($docs as $doc) {
 }
 
 fclose($file);
-fclose($out_tmp);
 fclose($url_file);
 fclose($intro_file);
 fclose($slice_file);

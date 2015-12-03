@@ -21,7 +21,7 @@ es_header = [{
 # Instantiate the new Elasticsearch connection:
 es = Elasticsearch(es_header)
 
-index_name = "scans2"
+index_name = "scans3"
 
 text_fields = ["species", "phylum", "family", "class", "genus", "scientific_name", "wikipedia_snippet",
         "wikipedia_misc", "gbif_snippet", "gbif_misc", "groups"]
