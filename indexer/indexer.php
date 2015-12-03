@@ -1,29 +1,28 @@
 <?php
 
-function normalize($str) {
-    return preg_replace('/[^ A-Za-z0-9\-]/', '', $str);
-}
+$bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
 
-$file = fopen($argv[1], 'r');
+$data_file = fopen($argv[1], 'r');
+$docs = json_decode(fgets($data_file));
+fclose($data_file);
+
 $intro_file = fopen("../species-scraper/intros.json", 'r');
-$url_file = fopen("./data/url_map.json", 'r');
-$slice_file = fopen("./data/slice_data.json", 'r');
-
-$line = fgets($file);
-$docs = json_decode($line);
-$iline = fgets($intro_file);
-$intros = json_decode($iline);
+$intros = json_decode(fgets($intro_file));
+fclose($intro_file);
 
 // build a bear
+$url_file = fopen("./data/url_map.json", 'r');
 $species = [];
 while ($uline = fgets($url_file)) {
     $url_data = json_decode($uline, true);
     $species = array_merge($species, $url_data);
 }
+fclose($url_file);
 
+$slice_file = fopen("./data/slice_data.json", 'r');
 $slice_data = json_decode(fgets($slice_file), true);
+fclose($slice_file);
 
-$ind = 0;
 foreach($docs as $doc) {
     $desc = "";
     if (isset($doc->descriptions)) {
@@ -71,7 +70,6 @@ foreach($docs as $doc) {
             ];
 
             $blob = json_encode($doc);
-            $bonsai_url = "https://uhxnwjp8:t3y4mdk8zo1ck366@pine-2787280.us-east-1.bonsai.io";
             $index_cmd = "curl -XPOST \"{$bonsai_url}/scans3/scans_test/\" -d '{$blob}'\n";
 
             try {
@@ -83,7 +81,6 @@ foreach($docs as $doc) {
     }
 }
 
-fclose($file);
-fclose($url_file);
-fclose($intro_file);
-fclose($slice_file);
+function normalize($str) {
+    return preg_replace('/[^ A-Za-z0-9\-]/', '', $str);
+}
